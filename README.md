@@ -1,0 +1,2 @@
+# MES
+Metoda Elementów Skończonych
