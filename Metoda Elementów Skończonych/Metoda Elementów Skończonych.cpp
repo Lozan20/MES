@@ -1,8 +1,19 @@
-﻿#include <iostream>
+﻿#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+
+#include "FemGrid.hpp"
+
+
+constexpr auto FILEPATH = "data.txt";
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	GlobalData gl(FILEPATH);
+	FemGrid fg(gl);
+	
 }
 
 
