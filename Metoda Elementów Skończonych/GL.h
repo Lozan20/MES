@@ -5,6 +5,8 @@
 extern const int detN;
 extern const double conductivity;
 extern const int fragmentation;
+extern const double ro;
+extern const double c;
 
 
 
