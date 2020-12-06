@@ -22,7 +22,6 @@ public:
 		catch (std::ifstream::failure& e)
 		{
 			std::cout << e.what();
-
 		}
 		return data;
 	}
