@@ -1,3 +1,3 @@
 # MES
 Metoda Elementów Skończonych
-*Pozdrawiam Pana Piotra Kustre
+Pozdrawiam Pana Piotra Kustre
