@@ -17,6 +17,8 @@ class GlobalData
 	double N;
 	double ro;
 	double c;
+	double t0;
+	double ta;
 
 
 public:
@@ -45,6 +47,26 @@ public:
 		return wage;
 	}
 
+	double get_t0() const
+	{
+		return t0;
+	}
+
+	void set_t0(double t0)
+	{
+		this->t0 = t0;
+	}
+
+	double get_ta() const
+	{
+		return ta;
+	}
+
+	void set_ta(double ta)
+	{
+		this->ta = ta;
+	}
+
 	void set_wage(double wage)
 	{
 		this->wage = wage;
@@ -62,6 +84,8 @@ public:
 		wage = data[5];
 		c = data[6];
 		ro = data[7];
+		t0 = data[8];
+		ta = data[9];
 
 		if (wage == 2) N = 4;
 		if (wage == 3) N = 9;
