@@ -13,12 +13,13 @@ class GlobalData
 	int nN; // number of nodes
 	int nE; // number od elements
 	double wage;
-	double conductivity;
+	double alfa;
 	double N;
 	double ro;
 	double c;
 	double t0;
 	double ta;
+	double conductivity;
 
 
 public:
@@ -27,14 +28,14 @@ public:
 		return N;
 	}
 
-	double get_conductivity() const
+	double get_alfa() const
 	{
-		return conductivity;
+		return alfa;
 	}
 
-	void set_conductivity(double conductivity)
+	void set_alfa(double alfa)
 	{
-		this->conductivity = conductivity;
+		this->alfa = alfa;
 	}
 
 	void set_n(double n)
@@ -80,18 +81,29 @@ public:
 		H = data[1];
 		nH = data[2];
 		nW = data[3];
-		conductivity = data[4];
+		alfa = data[4];
 		wage = data[5];
 		c = data[6];
 		ro = data[7];
 		t0 = data[8];
 		ta = data[9];
+		conductivity = data[10];
 
 		if (wage == 2) N = 4;
 		if (wage == 3) N = 9;
 		if (wage == 4)N = 16;
 		nE = (nH - 1) * (nW - 1);
 		nN = nH * nW;
+	}
+
+	double get_conductivity() const
+	{
+		return conductivity;
+	}
+
+	void set_conductivity(double conductivity)
+	{
+		this->conductivity = conductivity;
 	}
 
 	double get_ro() const

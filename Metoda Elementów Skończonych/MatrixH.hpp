@@ -9,9 +9,7 @@ public:
 	std::vector<double>* detN_y;
 	std::vector<std::vector<std::vector<double>>> H1_4;
 	std::vector<std::vector<double>> H;
-public:
-
-	MatrixH(Local local, Wages& w)
+	MatrixH(Local &local, Wages& w)
 	{
 		detN_x = new std::vector<double>[detN];
 		detN_y = new std::vector<double>[detN];
@@ -72,5 +70,9 @@ public:
 				temp = 0.0;
 			}
 		}
+	}
+	~MatrixH()
+	{
+		
 	}
 };

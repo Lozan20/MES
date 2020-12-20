@@ -34,15 +34,13 @@ public:
 						      2)); // d³ugoœæ boku z tw pitagorasa
 					for (int m = 0; m < 2; m++)
 					{
-						P[i][m] += -conductivity * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j][m];
+						P[i][m] += alfa * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j][m];
 						for (int n = 0; n < 2; n++)
 						{
-							matrix_h[i].H[m][n] += w.basic_w[j] * conductivity * sf->get_shapefun()[j][m] * sf->
+							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j][m] * sf->
 								get_shapefun()[j][n] * L / 2; // waga * przewodzenie * wektor N * wektor N ale odwrocony * L/2;
-
 						}
 					}
-					
 				}
 				if (fg.node[fg.elem[i].getID()[1] - 1].is_bc() && fg.node[fg.elem[i].getID()[2] - 1].is_bc())
 				{
@@ -52,17 +50,14 @@ public:
 						      2));
 					for (int m = 1; m < 3; m++)
 					{
-						P[i][m] += -conductivity * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j + 1 *
+						P[i][m] += alfa * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j + 1 *
 							fragmentation][m];
 						for (int n = 1; n < 3; n++)
 						{
-
-							matrix_h[i].H[m][n] += w.basic_w[j] * conductivity * sf->get_shapefun()[j + 1 *
+							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 1 *
 								fragmentation][m] * sf->get_shapefun()[j + 1 * fragmentation][n] * L / 2;
-
 						}
 					}
-					
 				}
 				if (fg.node[fg.elem[i].getID()[2] - 1].is_bc() && fg.node[fg.elem[i].getID()[3] - 1].is_bc())
 				{
@@ -72,16 +67,14 @@ public:
 						      2));
 					for (int m = 2; m < 4; m++)
 					{
-						P[i][m] += -conductivity * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j + 2 *
+						P[i][m] += alfa * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j + 2 *
 							fragmentation][m];
 						for (int n = 2; n < 4; n++)
 						{
-							matrix_h[i].H[m][n] += w.basic_w[j] * conductivity * sf->get_shapefun()[j + 2 *
+							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 2 *
 								fragmentation][m] * sf->get_shapefun()[j + 2 * fragmentation][n] * L / 2;
-
 						}
 					}
-					
 				}
 				if (fg.node[fg.elem[i].getID()[3] - 1].is_bc() && fg.node[fg.elem[i].getID()[0] - 1].is_bc())
 				{
@@ -91,16 +84,14 @@ public:
 						      2));
 					for (int m = 0; m < 4; m += 3)
 					{
-						P[i][m] += -conductivity * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j + 3 *
+						P[i][m] += alfa * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j + 3 *
 							fragmentation][m];
 						for (int n = 0; n < 4; n += 3)
 						{
-							matrix_h[i].H[m][n] += w.basic_w[j] * conductivity * sf->get_shapefun()[j + 3 *
+							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 3 *
 								fragmentation][m] * sf->get_shapefun()[j + 3 * fragmentation][n] * L / 2;
-
 						}
 					}
-					
 				}
 			}
 		}

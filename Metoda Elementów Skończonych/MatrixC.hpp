@@ -1,8 +1,7 @@
+#ifndef MATRIXC
+#define MATRIXC
 #include <vector>
-
 #include "GL.h"
-
-
 class MatrixC
 {
 public:
@@ -49,3 +48,4 @@ public:
 		}
 	}
 };
+#endif

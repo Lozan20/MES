@@ -3,12 +3,13 @@
 
 
 extern const int detN;
-extern const double conductivity;
+extern const double alfa;
 extern const int fragmentation;
 extern const double ro;
 extern const double c;
 extern const double ta;
 extern const double t0;
+extern const double conductivity;
 
 
 

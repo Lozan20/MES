@@ -1,14 +1,17 @@
+#ifndef MATRIXGLOBAL
+#define MATRIXGLOBAL
 #include "BoundaryCondition.hpp"
 #include "MatrixC.hpp"
 #include "MatrixH.hpp"
-
 class MatrixGlobal
 {
 	std::vector<std::vector<double>> global_h;
 	std::vector<std::vector<double>> global_c;
 	std::vector<double> global_p;
 public:
-	MatrixGlobal(FemGrid fg, std::vector<MatrixH> matrixH,std::vector<MatrixC> matrixC,BoundaryCondition bc)
+	
+
+	MatrixGlobal(FemGrid &fg, std::vector<MatrixH> &matrixH,std::vector<MatrixC> &matrixC,BoundaryCondition &bc)
 	{
 		int size = fg.get_node().size();
 		setSize(size);
@@ -24,18 +27,6 @@ public:
 				}
 			}
 		}
-		print(size);
-	}
-	void print(int size)
-	{
-		for (int j = 0; j < size; j++)
-		{
-			for (int k = 0; k < size; k++)
-			{
-				std::cout << global_h[j][k];
-			}
-			std::cout << "\n";
-		}
 	}
 	void setSize(int size)
 	{
@@ -49,4 +40,35 @@ public:
 			global_c[i].resize(size);
 		}
 	}
+	std::vector<std::vector<double>> get_global_h() const
+	{
+		return global_h;
+	}
+
+	void set_global_h(const std::vector<std::vector<double>>& global_h)
+	{
+		this->global_h = global_h;
+	}
+
+	std::vector<std::vector<double>> get_global_c() const
+	{
+		return global_c;
+	}
+
+	void set_global_c(const std::vector<std::vector<double>>& global_c)
+	{
+		this->global_c = global_c;
+	}
+
+	std::vector<double> get_global_p() const
+	{
+		return global_p;
+	}
+
+	void set_global_p(const std::vector<double>& global_p)
+	{
+		this->global_p = global_p;
+	}
 };
+#endif
+
