@@ -1,9 +1,8 @@
-#pragma once
-
+#ifndef FEMGRID_HPP
+#define FEMGRID_HPP
 #include <vector>
-
-
 #include "Element.hpp"
+#include "GlobalData.hpp"
 #include "Node.hpp"
 
 class FemGrid
@@ -56,3 +55,4 @@ public:
 	void set_node(const std::vector<Node>& node){this->node = node;}
 
 };
+#endif // FEMGRID_HPP

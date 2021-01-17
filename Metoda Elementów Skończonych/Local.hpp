@@ -1,7 +1,8 @@
+#ifndef LOCAL_HPP
+#define LOCAL_HPP
 #include "FemGrid.hpp"
 #include "Wages.hpp"
 #include "GL.h"
-
 
 class Local
 {
@@ -30,7 +31,6 @@ public:
 		return detJ;
 	}
 
-
 	Local(const Wages& w_, const FemGrid& fg_,Element& elem) : w(w_), fg(fg_)
 	{
 		detx_y = new std::vector<Node>[detN];
@@ -40,21 +40,20 @@ public:
 		
 		fillShapeFun();
 		calculate_jacobian(elem);
-		
 	}
-	Local()
+	~Local()
 	{
-
+		delete[] detx_y;
+		delete[] jakobian;
+		delete[] jakobian_1;
+		delete[] N;
 	}
 	
 	void fillShapeFun()
 	{
 		double temp = 0.25;
 		std::vector<Node*> coordinates;
-
 		Node* tempnode = new Node();
-
-
 			coordinates.push_back(new Node(-temp, -temp));
 			coordinates.push_back(new Node(temp, -temp));
 			coordinates.push_back(new Node(temp, temp));
@@ -65,7 +64,6 @@ public:
 					coordinates[0]->get_y() * (1 - w.get_coordinates()[i]->get_x()));
 				detx_y[i].push_back(*tempnode);
 				
-
 				tempnode->set_x_y(coordinates[1]->get_x() * (1 - w.get_coordinates()[i]->get_y()),
 					coordinates[1]->get_y() * (1 + w.get_coordinates()[i]->get_x()));
 				detx_y[i].push_back(*tempnode);
@@ -78,15 +76,15 @@ public:
 					coordinates[3]->get_y() * (1 - w.get_coordinates()[i]->get_x()));
 				detx_y[i].push_back(*tempnode);
 			}
-			delete tempnode;
-		
-		
-		
+		for (auto element : coordinates)
+		{
+			delete element;
+		}
+		delete tempnode;
 	}
 	void calculate_jacobian( Element& elem)
 	{
 		double x = 0.0;
-
 		for (int i = 0 ; i < detN; i++)
 		{
 			for (int j = 0; j < 4; j++)
@@ -129,3 +127,4 @@ public:
 	}
 };
 
+#endif // LOCAL_HPP

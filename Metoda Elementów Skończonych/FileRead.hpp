@@ -1,8 +1,9 @@
+#ifndef FILEREAD_HPP
+#define FILEREAD_HPP
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
-
 class FileRead
 {
 public:
@@ -26,3 +27,4 @@ public:
 		return data;
 	}
 };
+#endif // FILEREAD_HPP

@@ -1,6 +1,5 @@
-#ifndef MATRIXH
-#define MATRIXH
-
+#ifndef BOUNDARYCONDITION
+#define BOUNDARYCONDITION
 #include "BDShapeFunctions.hpp"
 #include "MatrixH.hpp"
 
@@ -18,7 +17,7 @@ public:
 	}
 	// Przechodzimy po kazdym elemencie w siatce ktore sa numerowane w ten sam sposob co macierze H i dodajemy warunki w kazdym punkcie ca³kowania ???
 	// dodanie warunku brzegowego HBC = det po S ( {N}{N}^T) * dS 
-	void add_boundary_condition(std::vector<MatrixH>& matrix_h, FemGrid& fg, Wages& w)
+	void add_boundary_condition(std::vector<MatrixH*>& matrix_h, FemGrid& fg, Wages& w)
 	{
 		BDShapeFunctions* sf = new BDShapeFunctions();
 		double L = 0.0;
@@ -32,12 +31,13 @@ public:
 						pow(fg.node[fg.elem[i].getID()[1] - 1].get_x() - fg.node[fg.elem[i].getID()[0] - 1].get_x(), 2)
 						+ pow(fg.node[fg.elem[i].getID()[1] - 1].get_y() - fg.node[fg.elem[i].getID()[0] - 1].get_y(),
 						      2)); // d³ugoœæ boku z tw pitagorasa
+					
 					for (int m = 0; m < 2; m++)
 					{
 						P[i][m] += alfa * ta * w.basic_w[j] * L / 2 * sf->get_shapefun()[j][m];
 						for (int n = 0; n < 2; n++)
 						{
-							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j][m] * sf->
+							matrix_h[i]->H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j][m] * sf->
 								get_shapefun()[j][n] * L / 2; // waga * przewodzenie * wektor N * wektor N ale odwrocony * L/2;
 						}
 					}
@@ -54,7 +54,7 @@ public:
 							fragmentation][m];
 						for (int n = 1; n < 3; n++)
 						{
-							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 1 *
+							matrix_h[i]->H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 1 *
 								fragmentation][m] * sf->get_shapefun()[j + 1 * fragmentation][n] * L / 2;
 						}
 					}
@@ -71,7 +71,7 @@ public:
 							fragmentation][m];
 						for (int n = 2; n < 4; n++)
 						{
-							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 2 *
+							matrix_h[i]->H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 2 *
 								fragmentation][m] * sf->get_shapefun()[j + 2 * fragmentation][n] * L / 2;
 						}
 					}
@@ -88,7 +88,7 @@ public:
 							fragmentation][m];
 						for (int n = 0; n < 4; n += 3)
 						{
-							matrix_h[i].H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 3 *
+							matrix_h[i]->H[m][n] += w.basic_w[j] * alfa * sf->get_shapefun()[j + 3 *
 								fragmentation][m] * sf->get_shapefun()[j + 3 * fragmentation][n] * L / 2;
 						}
 					}

@@ -1,6 +1,8 @@
 #ifndef BDSHAPEFUNCTIONS
 #define BDSHAPEFUNCTIONS
 #include <vector>
+
+#include "GL.h"
 #include "ShapeFunctions.hpp"
 #include "Node.hpp"
 
@@ -78,17 +80,7 @@ public:
 	}
 	void fourPoints()
 	{
-		double temp = 0.0;
-		std::vector<Node*> cords;
-		temp = 1.0 / sqrt(3);
-		cords.push_back(new Node(-temp, -1));
-		cords.push_back(new Node(temp, -1));
-		cords.push_back(new Node(1, -temp));
-		cords.push_back(new Node(1, temp));
-		cords.push_back(new Node(temp, 1));
-		cords.push_back(new Node(-temp, 1));
-		cords.push_back(new Node(-1, temp));
-		cords.push_back(new Node(-1, -temp));
+	//TODO cztery punky calkowania
 	}
 
 };

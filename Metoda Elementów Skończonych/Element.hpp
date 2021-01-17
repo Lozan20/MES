@@ -1,8 +1,6 @@
-#pragma once
+#ifndef ELEMENT_HPP
+#define ELEMENT_HPP
 #include <vector>
-#include "GlobalData.hpp"
-
-
 class Element
 {
 	std::vector<int> id;
@@ -21,3 +19,4 @@ public:
 	}
 	
 };
+#endif // ELEMENT_HPP

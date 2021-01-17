@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MATRIXH_HPP
+#define MATRIXH_HPP
 #include <vector>
 #include "Local.hpp"
 
@@ -9,6 +10,11 @@ public:
 	std::vector<double>* detN_y;
 	std::vector<std::vector<std::vector<double>>> H1_4;
 	std::vector<std::vector<double>> H;
+	~MatrixH()
+	{
+		delete[] detN_x;
+		delete[] detN_y;
+	}
 	MatrixH(Local &local, Wages& w)
 	{
 		detN_x = new std::vector<double>[detN];
@@ -27,6 +33,7 @@ public:
 		double temp = 0.0;
 		for (int i = 0; i < detN; i++)
 		{
+
 			for (int j = 0; j < 4; j++)
 			{
 				temp = 1 / local.getDetJ()[i] * (local.getDetx_y()[i][j].get_x() * local.getjakobian()[i][3] + local.
@@ -36,6 +43,7 @@ public:
 		}
 		for (int i = 0; i < detN; i++)
 		{
+
 			for (int j = 0; j < 4; j++)
 			{
 				temp = 1 / local.getDetJ()[i] * (local.getDetx_y()[i][j].get_x() * (-local.getjakobian()[i][2]) + local.
@@ -44,10 +52,12 @@ public:
 			}
 		}
 		temp = 0.0;
+
 		for (int m = 0; m < detN; m++)
 		{
 			for (int i = 0; i < 4; i++)
 			{
+				#pragma omp parallel for private(temp)
 				for (int j = 0; j < 4; j++)
 				{
 					temp = w.get_linew()[m] * (detN_x[m][i] * detN_x[m][j] + detN_y[m][i] * detN_y[m][j]) * conductivity
@@ -71,8 +81,6 @@ public:
 			}
 		}
 	}
-	~MatrixH()
-	{
-		
-	}
+
 };
+#endif // MATRIXH_HPP

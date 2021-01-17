@@ -1,9 +1,8 @@
-#pragma once
+#ifndef GLOBALDATA_HPP
+#define GLOBALDATA_HPP
 #include <string>
 #include <vector>
-
 #include "FileRead.hpp"
-
 class GlobalData
 {
 	float W; // Width
@@ -20,8 +19,8 @@ class GlobalData
 	double t0;
 	double ta;
 	double conductivity;
-
-
+	int totaltime;
+	int timestep;
 public:
 	double get_n() const
 	{
@@ -88,6 +87,8 @@ public:
 		t0 = data[8];
 		ta = data[9];
 		conductivity = data[10];
+		totaltime = data[11];
+		timestep = data[12];
 
 		if (wage == 2) N = 4;
 		if (wage == 3) N = 9;
@@ -99,6 +100,14 @@ public:
 	double get_conductivity() const
 	{
 		return conductivity;
+	}
+	int get_timestep() const
+	{
+		return timestep;
+	}
+	int get_totaltime() const
+	{
+		return totaltime;
 	}
 
 	void set_conductivity(double conductivity)
@@ -188,3 +197,4 @@ public:
 		nH = n_h;
 	}
 };
+#endif // GLOBALDATA_HPP

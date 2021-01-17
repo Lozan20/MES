@@ -1,7 +1,6 @@
+#ifndef WAGES_HPP
+#define WAGES_HPP
 #include <vector>
-
-#include "Fun.hpp"
-
 class Wages
 {
 	std::vector<Node*> coordinates;
@@ -11,11 +10,8 @@ class Wages
 public:
 	std::vector<double> basic_w;
 
-	
-public:
 	Wages(int size_) : size(size_)
 	{
-		
 		wages = new double* [size];
 		for(int i = 0;i<size;i++)
 		{
@@ -36,17 +32,11 @@ public:
 			setFourCoordinates();
 			fourPoints();
 		}
-
 	}
-	Wages()
+	
+	~Wages()
 	{
-
-	}
-	double count(double x,double y,int m)
-	{
-		double result = 0.0;
-		result = Fun::fun(x, y)*linew[m];
-		return result;
+		
 	}
 private:
 	void setTwoCoordinates()
@@ -94,9 +84,8 @@ private:
 		coordinates.push_back(new Node(-temp2, temp1));
 		coordinates.push_back(new Node(temp2, temp1));
 		coordinates.push_back(new Node(temp1, temp1));
-
-		
 	}
+	
 	void twoPoints()
 	{
 		basic_w.push_back(1.0);
@@ -136,9 +125,7 @@ private:
 			{
 				wages[i][j] = tab[i] * tab[j];
 				linew.push_back(wages[i][j]);
-				
 			}
-			
 		}
 	}
 	void fourPoints()
@@ -151,31 +138,10 @@ private:
 				wages[i][j] = tab[i] * tab[j];
 				linew.push_back(wages[i][j]);
 			}
-
 		}
 	}
 public:
-	void print()
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 3; j++)
-			{
-				std::cout << wages[i][j] << "\t";
-			}
-			std::cout << std::endl;
 
-		}
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 3; j++)
-			{
-				std::cout << coordinates[i][j].get_x() << "\t";
-			}
-			std::cout << std::endl;
-
-		}
-	}
 	int get_size() const
 	{
 		return size;
@@ -207,3 +173,4 @@ public:
 	}
 
 };
+#endif // WAGES_HPP
