@@ -23,4 +23,4 @@ Metoda Elementów Skończonych
 11. Element - Definiuje pojedyńczy element który zawiera współrzędne swoich węzłów.  
 12. BDShapeFunctions - oblicza funkcje kształtu na KRAWĘDZIACH elementu.  
 13. BoundaryCondition - Dodaje warunek brzegowy do macierzy H w każdym elemencie.  
-Pozdrawiam Pana Piotra Kustre
+
